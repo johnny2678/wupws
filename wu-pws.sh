@@ -91,5 +91,5 @@ echo "PWSUV=$PWSUV"
 PWSPOST="ID=$PWSID&PASSWORD=$PWSPASS&dateutc=$PWSDATEUTC&winddir=$PWSWINDDIR&windspeedmph=$PWSWINDSPEEDMPH&windgustmph=$PWSWINDGUSTMPH&tempf=$PWSTEMPF&rainin=$PWSRAININ&dailyrainin=$PWSDAILYRAININ&baromin=$PWSBAROMIN&dewptf=$PWSDEWPTF&humidity=$PWSHUMIDITY&solarradiation=$PWSSOLARRADIATION&UV=$PWSUV&softwaretype=wu_pws_ver1.0&action=updateraw"
 #echo $PWSPOST
 
-RESULT=$(wget -qo $WORKINGDIR/tmp.file --post-data=$PWSPOST http://www.pwsweather.com/pwsupdate/pwsupdate.php)
-echo wget -qo $WORKINGDIR/tmp.file --post-data=$PWSPOST http://www.pwsweather.com/pwsupdate/pwsupdate.php
+RESULT=$(wget -O /dev/null --post-data=$PWSPOST http://www.pwsweather.com/pwsupdate/pwsupdate.php)
+echo wget -O /dev/null --post-data=$PWSPOST http://www.pwsweather.com/pwsupdate/pwsupdate.php
