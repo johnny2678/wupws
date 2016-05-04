@@ -57,12 +57,12 @@ echo "PWSWINDGUSTMPH=$PWSWINDGUSTMPH"
 PWSTEMPF=$(jq .current_observation.temp_f $WORKINGDIR/wu.json |tr -d '"')
 echo "PWSTEMPF=$PWSTEMPF"
 
-# extract rainin - Hourly rain in inches
+# extract hourly rainin - Hourly rain in inches
 PWSRAININ=$(jq .current_observation.precip_1hr_in $WORKINGDIR/wu.json |tr -d '"')
 echo "PWSRAININ=$PWSRAININ"
 
 
-# extract rainin - Hourly rain in inches
+# extract daily rainin - Daily rain in inches
 PWSDAILYRAININ=$(jq .current_observation.precip_today_in $WORKINGDIR/wu.json |tr -d '"')
 echo "PWSDAILYRAININ=$PWSDAILYRAININ"
 
@@ -93,3 +93,17 @@ PWSPOST="ID=$PWSID&PASSWORD=$PWSPASS&dateutc=$PWSDATEUTC&winddir=$PWSWINDDIR&win
 
 RESULT=$(wget -O /dev/null --post-data=$PWSPOST http://www.pwsweather.com/pwsupdate/pwsupdate.php)
 echo wget -O /dev/null --post-data=$PWSPOST http://www.pwsweather.com/pwsupdate/pwsupdate.php
+
+# retains 10 backup cycles for debugging
+rm $WORKINGDIR/wu.json.10
+mv $WORKINGDIR/wu.json.9 $WORKINGDIR/wu.json.10
+mv $WORKINGDIR/wu.json.8 $WORKINGDIR/wu.json.9
+mv $WORKINGDIR/wu.json.7 $WORKINGDIR/wu.json.8
+mv $WORKINGDIR/wu.json.6 $WORKINGDIR/wu.json.7
+mv $WORKINGDIR/wu.json.5 $WORKINGDIR/wu.json.6
+mv $WORKINGDIR/wu.json.4 $WORKINGDIR/wu.json.5
+mv $WORKINGDIR/wu.json.3 $WORKINGDIR/wu.json.4
+mv $WORKINGDIR/wu.json.2 $WORKINGDIR/wu.json.3
+mv $WORKINGDIR/wu.json.1 $WORKINGDIR/wu.json.2
+mv $WORKINGDIR/wu.json $WORKINGDIR/wu.json.1
+
